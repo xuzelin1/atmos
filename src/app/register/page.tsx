@@ -62,7 +62,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen flex">
       {/* ====== 左侧：产品特性 ====== */}
-      <div className="hidden lg:flex lg:w-[45%] bg-gradient-to-br from-brand-50 via-white to-brand-50/50 flex-col relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-[45%] bg-[#f6f6f6] flex-col relative overflow-hidden">
         <div className="flex-1 flex flex-col justify-center px-12 xl:px-16 py-12">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 mb-10">
@@ -126,7 +126,7 @@ export default function RegisterPage() {
 
         {/* 背景装饰 */}
         <div className="absolute top-1/4 -right-20 w-80 h-80 bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 -left-20 w-60 h-60 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 -left-20 w-60 h-60 bg-brand-200/30 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       {/* ====== 右侧：注册表单 ====== */}

@@ -135,7 +135,7 @@ export default function DashboardPage() {
     <div className="h-screen flex flex-col bg-white overflow-hidden">
       {/* ====== 顶部促销横幅 ====== */}
       {bannerVisible && (
-        <div className="bg-gradient-to-r from-brand-600 to-brand-700 text-white shrink-0">
+        <div className="bg-brand-900 text-white shrink-0">
           <div className="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Star className="w-4 h-4 text-yellow-300 fill-yellow-300" />

@@ -6,23 +6,23 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
-    --muted: 210 20% 96%;
-    --muted-foreground: 215 14% 46%;
-    --border: 214 20% 90%;
+    --background: 0 0% 96%;          /* #f6f6f6 */
+    --foreground: 0 0% 5%;           /* #0c0c0c */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --border: 0 0% 90%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --brand: 228 75% 59%;
+    --card-foreground: 0 0% 5%;
+    --brand: 0 0% 5%;                /* #0c0c0c */
     --brand-foreground: 0 0% 100%;
   }
 
   * {
-    @apply border-[#dee2e6];
+    @apply border-[#e8e8e8];
   }
 
   body {
-    @apply bg-white text-slate-900 antialiased;
+    @apply bg-[#f6f6f6] text-brand-900 antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
@@ -33,39 +33,39 @@
     @apply bg-white/80 backdrop-blur-xl border-b border-slate-200/60;
   }
 
-  /* 渐变文字 */
+  /* 渐变文字 - 黑色到深灰 */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-brand-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-900 to-brand-700;
   }
 
   .text-gradient-purple {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-600 via-purple-500 to-brand-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-900 via-brand-700 to-brand-500;
   }
 
-  /* 卡片 */
+  /* 卡片 - 白色背景 + 轻边框 */
   .card {
-    @apply bg-white rounded-2xl border border-slate-100 shadow-card;
+    @apply bg-white rounded-2xl border border-slate-200/70;
   }
 
   .card-hover {
-    @apply card hover:shadow-card-hover hover:border-slate-200 transition-all duration-300;
+    @apply card hover:border-slate-300 hover:shadow-card-hover transition-all duration-300;
   }
 
-  /* 按钮 */
+  /* 按钮 - atoms.dev 风格：黑色主按钮 */
   .btn-primary {
-    @apply bg-brand-600 text-white px-5 py-2.5 rounded-xl font-semibold 
-           hover:bg-brand-700 transition-all duration-200 
-           active:scale-[0.98] shadow-sm;
+    @apply bg-brand-900 text-white px-5 py-2.5 rounded-xl font-semibold
+           hover:bg-brand-800 transition-all duration-200
+           active:scale-[0.98];
   }
 
   .btn-secondary {
-    @apply bg-white text-slate-700 px-5 py-2.5 rounded-xl font-semibold 
-           border border-slate-200 hover:border-slate-300 hover:bg-slate-50 
+    @apply bg-white text-brand-900 px-5 py-2.5 rounded-xl font-semibold
+           border border-slate-200 hover:border-slate-300 hover:bg-slate-50
            transition-all duration-200;
   }
 
   .btn-ghost {
-    @apply text-slate-600 hover:text-slate-900 font-medium transition-colors;
+    @apply text-brand-700 hover:text-brand-900 font-medium transition-colors;
   }
 
   /* 标签 */
@@ -74,17 +74,17 @@
   }
 
   .badge-primary {
-    @apply badge bg-brand-50 text-brand-700;
+    @apply badge bg-brand-100 text-brand-900;
   }
 
   .badge-success {
     @apply badge bg-emerald-50 text-emerald-700;
   }
 
-  /* 输入框 */
+  /* 输入框 - atoms.dev 风格：白色背景 + 灰色边框 */
   .input {
-    @apply w-full px-4 py-2.5 border border-slate-200 rounded-xl 
-           focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 
+    @apply w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl
+           focus:ring-2 focus:ring-brand-900/10 focus:border-brand-900
            outline-none transition-all duration-200 text-sm;
   }
 
@@ -116,11 +116,11 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #dee2e6;
+  background: #d4d4d4;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #adb5bd;
+  background: #a8a8a8;
 }
 
 /* 光标闪烁 */
@@ -131,5 +131,5 @@
 .cursor-blink::after {
   content: "▊";
   animation: blink 1s infinite;
-  color: #5c7cfa;
+  color: #0c0c0c;
 }

@@ -5,29 +5,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // atoms.dev 实际主色调：黑色系
         brand: {
-          50: "#f0f4ff",
-          100: "#dbe4ff",
-          200: "#bac8ff",
-          300: "#91a7ff",
-          400: "#748ffc",
-          500: "#5c7cfa",
-          600: "#4c6ef5",
-          700: "#4263eb",
-          800: "#3b5bdb",
-          900: "#364fc7",
-          950: "#2b3fa0",
+          50: "#f6f6f6",
+          100: "#e8e8e8",
+          200: "#d4d4d4",
+          300: "#a8a8a8",
+          400: "#787878",
+          500: "#525252",
+          600: "#3a3a3a",
+          700: "#262626",
+          800: "#171717",
+          900: "#0c0c0c",
+          950: "#000000",
+        },
+        // 强调色（用于 accent / CTA 高亮）
+        accent: {
+          DEFAULT: "#0c0c0c",
+          foreground: "#ffffff",
         },
         surface: {
           DEFAULT: "#ffffff",
-          secondary: "#f8f9fa",
+          secondary: "#f6f6f6",
           elevated: "#ffffff",
-          overlay: "#f1f3f5",
-        },
-        border: {
-          DEFAULT: "#dee2e6",
-          light: "#e9ecef",
-          strong: "#ced4da",
+          overlay: "#f0f0f0",
         },
         muted: {
           DEFAULT: "#868e96",
@@ -46,8 +47,8 @@ const config: Config = {
       },
       fontSize: {
         "2xs": ["0.625rem", { lineHeight: "0.875rem" }],
-        hero: ["3.5rem", { lineHeight: "1.1", fontWeight: "800" }],
-        "hero-md": ["4.5rem", { lineHeight: "1.1", fontWeight: "800" }],
+        hero: ["3.5rem", { lineHeight: "1.1", fontWeight: "700" }],
+        "hero-md": ["4.5rem", { lineHeight: "1.1", fontWeight: "700" }],
       },
       borderRadius: {
         xl: "0.75rem",
@@ -60,7 +61,6 @@ const config: Config = {
           "0 4px 12px 0 rgba(0,0,0,0.06), 0 1px 3px 0 rgba(0,0,0,0.04)",
         "card-lg":
           "0 4px 24px 0 rgba(0,0,0,0.06), 0 1px 4px 0 rgba(0,0,0,0.03)",
-        top: "0 -2px 10px 0 rgba(0,0,0,0.03)",
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out",
