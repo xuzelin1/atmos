@@ -3,6 +3,11 @@ import { getCurrentUser } from "@/lib/session";
 import { qwenClient, AGENTS } from "@/lib/agents";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+// 流式响应需要更大的内存
+export const maxDuration = 60;
+
 export async function POST(
   req: NextRequest,
   { params }: { params: { id: string } }
