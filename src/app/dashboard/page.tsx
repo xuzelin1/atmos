@@ -9,9 +9,7 @@ import {
   LogOut,
   Trash2,
   ArrowRight,
-  Send,
   MessageSquare,
-  LayoutGrid,
   Bot,
   Code2,
   Search,
@@ -20,9 +18,6 @@ import {
   RefreshCw,
   Zap,
   Layers,
-  Home,
-  BarChart3,
-  Settings,
   Star,
   X,
 } from "lucide-react";
@@ -37,7 +32,7 @@ interface Project {
 }
 
 const STATUS_MAP: Record<string, { label: string; color: string }> = {
-  draft: { label: "草稿", color: "bg-slate-100 text-slate-600" },
+  draft: { label: "草稿", color: "bg-neutral-100 text-neutral-600" },
   researching: { label: "调研中", color: "bg-blue-100 text-blue-600" },
   pming: { label: "规划中", color: "bg-purple-100 text-purple-600" },
   architecting: { label: "架构中", color: "bg-amber-100 text-amber-600" },
@@ -67,7 +62,6 @@ export default function DashboardPage() {
   const [creating, setCreating] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [bannerVisible, setBannerVisible] = useState(true);
-  const [activeTab, setActiveTab] = useState("home");
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -124,13 +118,6 @@ export default function DashboardPage() {
     router.push("/");
   };
 
-  const TABS = [
-    { id: "home", label: "首页", icon: Home },
-    { id: "templates", label: "模板", icon: LayoutGrid },
-    { id: "analytics", label: "分析", icon: BarChart3 },
-    { id: "settings", label: "设置", icon: Settings },
-  ];
-
   return (
     <div className="h-screen flex flex-col bg-white overflow-hidden">
       {/* ====== 顶部促销横幅 ====== */}
@@ -164,14 +151,14 @@ export default function DashboardPage() {
         <aside
           className={`${
             sidebarOpen ? "w-56" : "w-0"
-          } transition-all duration-300 border-r border-slate-200 flex flex-col bg-slate-50/60 overflow-hidden shrink-0`}
+          } transition-all duration-300 border-r border-neutral-200 flex flex-col bg-neutral-50/60 overflow-hidden shrink-0`}
         >
           {/* Logo */}
-          <div className="px-4 py-4 border-b border-slate-200 flex items-center gap-2.5">
-            <div className="w-7 h-7 bg-brand-600 rounded-lg flex items-center justify-center shrink-0">
+          <div className="px-4 py-4 border-b border-neutral-200 flex items-center gap-2.5">
+            <div className="w-7 h-7 bg-neutral-900 rounded-lg flex items-center justify-center shrink-0">
               <Sparkles className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-bold text-sm text-slate-900 whitespace-nowrap">
+            <span className="font-bold text-sm text-neutral-900 whitespace-nowrap">
               AI Team Studio
             </span>
           </div>
@@ -180,7 +167,7 @@ export default function DashboardPage() {
           <div className="px-3 py-3">
             <button
               onClick={() => inputRef.current?.focus()}
-              className="w-full flex items-center gap-2 px-3 py-2 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-all text-sm"
+              className="w-full flex items-center gap-2 px-3 py-2 bg-neutral-900 text-white rounded-lg font-medium hover:bg-neutral-800 transition-all text-sm"
             >
               <Plus className="w-4 h-4" />
               <span className="whitespace-nowrap">新建项目</span>
@@ -190,20 +177,20 @@ export default function DashboardPage() {
           {/* 项目列表 */}
           <div className="flex-1 overflow-y-auto px-3">
             <div className="flex items-center justify-between px-1 mb-2">
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+              <span className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">
                 项目
               </span>
-              <span className="text-[11px] text-slate-400">{projects.length}</span>
+              <span className="text-[11px] text-neutral-400">{projects.length}</span>
             </div>
 
             {loading ? (
               <div className="space-y-1.5 px-1">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-8 bg-slate-100 rounded-lg animate-pulse" />
+                  <div key={i} className="h-8 bg-neutral-100 rounded-lg animate-pulse" />
                 ))}
               </div>
             ) : projects.length === 0 ? (
-              <p className="text-xs text-slate-400 px-2 py-4 text-center">
+              <p className="text-xs text-neutral-400 px-2 py-4 text-center">
                 暂无项目
               </p>
             ) : (
@@ -216,15 +203,15 @@ export default function DashboardPage() {
                       className="group flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-all hover:bg-white/60"
                       onClick={() => router.push(`/project/${project.id}`)}
                     >
-                      <MessageSquare className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <MessageSquare className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-medium text-slate-700 truncate">
+                        <p className="text-xs font-medium text-neutral-700 truncate">
                           {project.name}
                         </p>
                       </div>
                       <button
                         onClick={(e) => { e.stopPropagation(); handleDelete(project.id); }}
-                        className="text-slate-300 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100 shrink-0"
+                        className="text-neutral-300 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100 shrink-0"
                       >
                         <Trash2 className="w-3 h-3" />
                       </button>
@@ -236,10 +223,10 @@ export default function DashboardPage() {
           </div>
 
           {/* 底部 */}
-          <div className="px-3 py-3 border-t border-slate-200">
+          <div className="px-3 py-3 border-t border-neutral-200">
             <button
               onClick={handleLogout}
-              className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-slate-500 hover:text-slate-700 hover:bg-white/60 transition-all"
+              className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-neutral-500 hover:text-neutral-700 hover:bg-white/60 transition-all"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span className="whitespace-nowrap">退出登录</span>
@@ -250,15 +237,15 @@ export default function DashboardPage() {
         {/* 主内容区 */}
         <div className="flex-1 flex flex-col min-w-0">
           {/* 顶部栏 */}
-          <header className="h-12 border-b border-slate-200 flex items-center justify-between px-4 shrink-0 bg-white">
+          <header className="h-12 border-b border-neutral-200 flex items-center justify-between px-4 shrink-0 bg-white">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-all"
+              className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 transition-all"
             >
               {sidebarOpen ? <PanelRightClose className="w-3.5 h-3.5" /> : <PanelRightOpen className="w-3.5 h-3.5" />}
             </button>
             <div className="flex items-center gap-1.5">
-              <span className="text-[10px] text-slate-400">Qwen 3.7-Plus</span>
+              <span className="text-[10px] text-neutral-400">Qwen 3.7-Plus</span>
               <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
             </div>
           </header>
@@ -267,14 +254,14 @@ export default function DashboardPage() {
           <div className="flex-1 overflow-y-auto">
             <div className="max-w-3xl mx-auto px-6 py-12">
               {/* ====== 居中欢迎卡片 ====== */}
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 md:p-10 mb-8">
+              <div className="bg-white rounded-2xl border-neutral-200 p-8 md:p-10 mb-8">
                 {/* Agent 头像组 */}
                 <div className="flex items-center justify-center mb-6">
                   <div className="flex -space-x-2">
                     {AGENT_AVATARS.map((agent, idx) => (
                       <div
                         key={agent.name}
-                        className={`w-12 h-12 ${agent.color} rounded-full border-[3px] border-white flex items-center justify-center text-lg shadow-sm`}
+                        className={`w-10 h-10 ${agent.color} rounded-xl border-2 border-white flex items-center justify-center text-base shadow-sm`}
                         style={{ zIndex: AGENT_AVATARS.length - idx }}
                         title={agent.name}
                       >
@@ -283,61 +270,74 @@ export default function DashboardPage() {
                     ))}
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm font-semibold text-slate-700">AI 团队</p>
-                    <p className="text-xs text-slate-400">4 Agents 已就绪</p>
+                    <p className="text-sm font-semibold text-neutral-700">AI 团队</p>
+                    <p className="text-xs text-neutral-400">4 Agents 已就绪</p>
                   </div>
                 </div>
 
                 {/* 欢迎文案 */}
-                <h1 className="text-2xl font-bold text-slate-900 text-center mb-2">
+                <h1 className="text-2xl font-bold text-neutral-900 text-center mb-2">
                   今天想构建什么？
                 </h1>
-                <p className="text-slate-500 text-sm text-center mb-8">
+                <p className="text-neutral-500 text-sm text-center mb-8">
                   描述你的产品想法，AI 团队会从调研到代码方案，一步步帮你落地
                 </p>
 
-                {/* 输入区 */}
-                <div className="relative flex items-end gap-3 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3.5 focus-within:border-brand-400 focus-within:ring-2 focus-within:ring-brand-100 transition-all">
-                  <textarea
-                    ref={inputRef}
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    placeholder="描述你的产品想法，AI 团队将帮你分析..."
-                    rows={2}
-                    className="flex-1 bg-transparent resize-none outline-none text-sm text-slate-700 placeholder:text-slate-400 py-1 max-h-32"
-                    style={{ minHeight: "44px" }}
-                    onInput={(e) => {
-                      const target = e.target as HTMLTextAreaElement;
-                      target.style.height = "auto";
-                      target.style.height = Math.min(target.scrollHeight, 128) + "px";
-                    }}
-                  />
-                  <button
-                    onClick={handleCreate}
-                    disabled={!inputValue.trim() || creating}
-                    className="p-2.5 bg-brand-600 text-white rounded-xl hover:bg-brand-700 transition-all disabled:opacity-40 disabled:cursor-not-allowed shrink-0 self-end"
-                  >
-                    {creating ? (
-                      <RefreshCw className="w-5 h-5 animate-spin" />
-                    ) : (
-                      <Send className="w-5 h-5" />
-                    )}
-                  </button>
+                {/* 输入区 - atoms.dev 风格：左加号 + 右发送 */}
+                <div className="relative bg-white border border-neutral-200 rounded-[20px] shadow-sm hover:border-neutral-300 focus-within:border-neutral-400 focus-within:ring-2 focus-within:ring-neutral-900/5 transition-all">
+                  <div className="flex items-end gap-2 px-4 py-3">
+                    {/* 左侧加号按钮 */}
+                    <button
+                      type="button"
+                      className="w-9 h-9 shrink-0 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:border-neutral-300 transition-all self-end"
+                      title="更多选项"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </button>
+                    {/* 文本输入 */}
+                    <textarea
+                      ref={inputRef}
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      placeholder="描述你的产品想法，AI 团队会从调研到代码方案，一步步帮你落地"
+                      rows={1}
+                      className="flex-1 bg-transparent resize-none outline-none text-[15px] text-neutral-900 placeholder:text-neutral-400 py-2 max-h-32"
+                      style={{ minHeight: "40px" }}
+                      onInput={(e) => {
+                        const target = e.target as HTMLTextAreaElement;
+                        target.style.height = "auto";
+                        target.style.height = Math.min(target.scrollHeight, 128) + "px";
+                      }}
+                    />
+                    {/* 右侧发送按钮 */}
+                    <button
+                      onClick={handleCreate}
+                      disabled={!inputValue.trim() || creating}
+                      className="w-9 h-9 shrink-0 rounded-full bg-neutral-800 text-white flex items-center justify-center hover:bg-neutral-700 transition-all disabled:opacity-30 disabled:cursor-not-allowed self-end"
+                      title="发送"
+                    >
+                      {creating ? (
+                        <RefreshCw className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <ArrowRight className="w-4 h-4" />
+                      )}
+                    </button>
+                  </div>
                 </div>
-                <p className="text-center text-[10px] text-slate-400 mt-3">
-                  Enter 发送 · Shift+Enter 换行
+                <p className="text-center text-xs text-neutral-500 mt-3">
+                  输入内容后按 Enter 发送 · Shift+Enter 换行
                 </p>
               </div>
 
               {/* ====== 快速开始 ====== */}
               <div className="mb-8">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-semibold text-slate-700 flex items-center gap-2">
+                  <h3 className="text-sm font-semibold text-neutral-700 flex items-center gap-2">
                     <Zap className="w-4 h-4 text-amber-500" />
                     快速开始
                   </h3>
-                  <button className="text-xs text-brand-600 hover:text-brand-700 font-medium">
+                  <button className="text-xs text-neutral-500 hover:text-neutral-700 font-medium">
                     查看全部 →
                   </button>
                 </div>
@@ -349,13 +349,13 @@ export default function DashboardPage() {
                         setInputValue(prompt);
                         inputRef.current?.focus();
                       }}
-                      className="text-left px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl hover:border-brand-300 hover:bg-brand-50/50 transition-all group"
+                      className="text-left px-4 py-3.5 bg-white border border-neutral-200 rounded-2xl hover:border-neutral-400 hover:shadow-sm transition-all group"
                     >
                       <div className="flex items-start gap-3">
-                        <div className="w-7 h-7 bg-white rounded-lg border border-slate-200 flex items-center justify-center shrink-0 text-xs font-semibold text-slate-400 group-hover:border-brand-200 group-hover:text-brand-500 transition-all">
+                        <div className="w-7 h-7 bg-neutral-50 rounded-lg border border-neutral-200 flex items-center justify-center shrink-0 text-xs font-semibold text-neutral-400 group-hover:border-neutral-300 group-hover:text-neutral-600 transition-all">
                           {idx + 1}
                         </div>
-                        <p className="text-sm text-slate-600 group-hover:text-slate-800 flex-1 leading-relaxed">
+                        <p className="text-sm text-neutral-600 group-hover:text-neutral-900 flex-1 leading-relaxed">
                           {prompt}
                         </p>
                       </div>
@@ -368,8 +368,8 @@ export default function DashboardPage() {
               {projects.length > 0 && (
                 <div className="mb-8">
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-sm font-semibold text-slate-700">最近项目</h3>
-                    <Link href="/dashboard" className="text-xs text-brand-600 hover:text-brand-700 font-medium">
+                    <h3 className="text-sm font-semibold text-neutral-700">最近项目</h3>
+                    <Link href="/dashboard" className="text-xs text-neutral-500 hover:text-neutral-700 font-medium">
                       查看全部 →
                     </Link>
                   </div>
@@ -380,25 +380,25 @@ export default function DashboardPage() {
                         <Link
                           key={project.id}
                           href={`/project/${project.id}`}
-                          className="flex items-center gap-3 px-4 py-3 bg-white border border-slate-200 rounded-xl hover:border-slate-300 hover:shadow-sm transition-all"
+                          className="flex items-center gap-3 px-4 py-3 bg-white border border-neutral-200 rounded-2xl hover:border-neutral-400 hover:shadow-sm transition-all"
                         >
-                          <div className="w-9 h-9 bg-brand-50 rounded-lg flex items-center justify-center shrink-0">
-                            <MessageSquare className="w-4 h-4 text-brand-500" />
+                          <div className="w-9 h-9 bg-neutral-50 rounded-lg flex items-center justify-center shrink-0">
+                            <MessageSquare className="w-4 h-4 text-neutral-500" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-slate-700 truncate">
+                            <p className="text-sm font-medium text-neutral-700 truncate">
                               {project.name}
                             </p>
                             <div className="flex items-center gap-2 mt-0.5">
                               <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${status.color}`}>
                                 {status.label}
                               </span>
-                              <span className="text-[10px] text-slate-400">
+                              <span className="text-[10px] text-neutral-400">
                                 {project._count.messages} 步
                               </span>
                             </div>
                           </div>
-                          <ArrowRight className="w-4 h-4 text-slate-300" />
+                          <ArrowRight className="w-4 h-4 text-neutral-300" />
                         </Link>
                       );
                     })}
@@ -410,37 +410,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* ====== 底部 Tab 导航栏 ====== */}
-      <div className="border-t border-slate-200 bg-white shrink-0">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <div className="flex items-center">
-            {TABS.map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-5 py-3 text-sm font-medium transition-all border-b-2 -mb-px ${
-                    isActive
-                      ? "text-brand-600 border-brand-600"
-                      : "text-slate-400 border-transparent hover:text-slate-600"
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-          <Link
-            href="/dashboard"
-            className="text-xs text-brand-600 hover:text-brand-700 font-medium flex items-center gap-1"
-          >
-            查看全部 <ArrowRight className="w-3 h-3" />
-          </Link>
-        </div>
-      </div>
+      {/* ====== 底部 Tab 导航栏（已隐藏） ====== */}
     </div>
   );
 }
